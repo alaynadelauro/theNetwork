@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid myNav">
+  <div class="container-fluid myNav sticky-top">
     <div class="row justify-content-between align-items-center">
       <div class="col-4">
         <router-link class="d-flex" :to="{ name: 'Home' }">
