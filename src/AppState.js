@@ -10,5 +10,7 @@ export const AppState = reactive({
   posts: [],
 
   /**@type {import('./models/Ad.js').Ad[]} */
-  ads: []
+  ads: [],
+
+  accountEdit: false
 })

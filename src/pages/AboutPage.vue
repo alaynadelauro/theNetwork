@@ -13,3 +13,9 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="scss">
+template {
+  background-color: whitesmoke;
+}
+</style>

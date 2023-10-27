@@ -36,6 +36,8 @@ export default {
 .myNav {
   background-color: rgb(48, 3, 39);
   color: whitesmoke;
+  border-bottom: 4px solid rgb(6, 0, 5);
+  box-shadow: 5px 5px 15px black;
 }
 
 .navText {
