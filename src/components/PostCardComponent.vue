@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex w-50">
+    <div v-if="postProp.image" class="d-flex w-50">
         <img class="image-fluid postImage" :src="postProp.image" :alt="postProp.creator.name">
     </div>
     <div class="w-50 h-100">

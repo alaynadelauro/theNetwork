@@ -5,7 +5,7 @@ export class Post {
         this.creator = data.creator
         this.creatorId = data.creatorId
         this.id = data.id
-        this.image = data.imgUrl
+        this.image = data.imgUrl || null
         this.likeId = data.likeId
         this.likes = data.likes
         this.updatedAt = new Date(data.updatedAt) || new Date
