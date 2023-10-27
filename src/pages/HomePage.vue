@@ -124,6 +124,9 @@ template {
 
 .profileImg {
   height: 20vh;
+  width: 19vh;
+  object-fit: cover;
+  object-position: center;
   box-shadow: 5px 5px 15px black;
 }
 
