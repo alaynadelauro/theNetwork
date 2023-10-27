@@ -55,20 +55,13 @@ export default {
     }
     async function getAdds() {
       try {
-        // debugger
+
         await addService.getAdds()
       } catch (error) {
         logger.error(error)
       }
     }
-    // async function makeAPost() {
-    //   try {
-    //     logger.log('button clicked')
-    //   } catch (error) {
-    //     // Pop.error(error)
-    //     logger.error(error)
-    //   }
-    // }
+
     onMounted(() => {
       getPosts();
       getAdds();
@@ -76,9 +69,7 @@ export default {
     return {
       posts: computed(() => AppState.posts),
       ads: computed(() => AppState.ads),
-      // makePost() {
-      //   makeAPost()
-      // }
+
     };
   },
   components: { PostCardComponent, PostForm, AdCard }

@@ -14,6 +14,15 @@ class PostService {
             Pop.error(error)
         }
     }
+    async createPost(editable) {
+        try {
+            const res = await api.post('api/posts', editable)
+            AppState.posts.unshift(new Post(res.data))
+        } catch (error) {
+            Pop.error(error)
+            logger.error(error)
+        }
+    }
 }
 
 export const postService = new PostService
