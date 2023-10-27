@@ -20,8 +20,13 @@
           </div>
         </div>
       </div>
-      <div class="col-2 h-100 justify-content-end">
-        <h1>Add</h1>
+
+      <div class="col-2 h-100 justify-content-end d-flex flex-column myNav">
+        <p class="fs-3 text-center">A word from Our Sponsors</p>
+        <div v-for="ad in ads" :key="ad.title" class="advertisement mb-2 p-2">
+          <img class="image-fluid w-100 h-100" :src="ad.tall" :alt="ad.title">
+        </div>
+
       </div>
     </div>
 
@@ -36,6 +41,7 @@ import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState.js'
 import PostCardComponent from '../components/PostCardComponent.vue';
 import PostForm from '../components/PostForm.vue'
+import { addService } from '../services/AddService.js'
 
 export default {
   setup() {
@@ -48,22 +54,32 @@ export default {
         logger.error(error);
       }
     }
-    async function makeAPost() {
+    async function getAdds() {
       try {
-        logger.log('button clicked')
+        // debugger
+        await addService.getAdds()
       } catch (error) {
-        // Pop.error(error)
         logger.error(error)
       }
     }
+    // async function makeAPost() {
+    //   try {
+    //     logger.log('button clicked')
+    //   } catch (error) {
+    //     // Pop.error(error)
+    //     logger.error(error)
+    //   }
+    // }
     onMounted(() => {
       getPosts();
+      getAdds();
     });
     return {
       posts: computed(() => AppState.posts),
-      makePost() {
-        makeAPost()
-      }
+      ads: computed(() => AppState.ads),
+      // makePost() {
+      //   makeAPost()
+      // }
     };
   },
   components: { PostCardComponent, PostForm }
@@ -75,5 +91,20 @@ export default {
 .postCard {
   box-shadow: 5px 5px 15px black;
   background-color: white;
+}
+
+.advertisement {
+  height: 40vh;
+}
+
+.myNav {
+  background-color: rgb(48, 3, 39);
+  color: whitesmoke;
+
+}
+
+.navText {
+  color: whitesmoke;
+  font-family: 'Merienda', cursive;
 }
 </style>
