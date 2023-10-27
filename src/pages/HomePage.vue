@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid whiteBg">
     <div class="row justify-content-start">
       <div class="col-2 h-100">
         <h1>Profile</h1>
@@ -13,20 +13,18 @@
         <!-- SECTION modal goes here -->
       </div>
       <div class="col-8 text-center">
-        <h1>This is the Home Page</h1>
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center posts mt-5">
           <div v-for="post in posts" :key="post.id" class="col-9 d-flex postCard m-2 px-0">
             <PostCardComponent :postProp="post" />
           </div>
         </div>
       </div>
 
-      <div class="col-2 h-100 justify-content-end d-flex flex-column myNav">
-        <p class="fs-3 text-center">A word from Our Sponsors</p>
+      <div class="col-2 navText justify-content-end align-items-center d-flex flex-column myNav">
+        <p class="fs-3 text-center mb-0">A word from Our Sponsors</p>
         <div v-for="ad in ads" :key="ad.title" class="advertisement mb-2 p-2">
-          <img class="image-fluid w-100 h-100" :src="ad.tall" :alt="ad.title">
+          <AdCard :adProp="ad" />
         </div>
-
       </div>
     </div>
 
@@ -42,6 +40,7 @@ import { AppState } from '../AppState.js'
 import PostCardComponent from '../components/PostCardComponent.vue';
 import PostForm from '../components/PostForm.vue'
 import { addService } from '../services/AddService.js'
+import AdCard from '../components/AdCard.vue';
 
 export default {
   setup() {
@@ -82,15 +81,25 @@ export default {
       // }
     };
   },
-  components: { PostCardComponent, PostForm }
+  components: { PostCardComponent, PostForm, AdCard }
 }
 </script>
 
 
 <style scoped lang="scss">
+template {
+  max-height: 100vh;
+}
+
 .postCard {
   box-shadow: 5px 5px 15px black;
   background-color: white;
+}
+
+.posts {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  height: 84vh;
 }
 
 .advertisement {
@@ -100,7 +109,11 @@ export default {
 .myNav {
   background-color: rgb(48, 3, 39);
   color: whitesmoke;
+  height: 91vh;
+}
 
+.whiteBg {
+  background-color: whitesmoke;
 }
 
 .navText {

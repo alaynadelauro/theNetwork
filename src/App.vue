@@ -5,8 +5,6 @@
   <main>
     <router-view />
   </main>
-  <footer>
-  </footer>
 </template>
 
 <script>
@@ -28,5 +26,13 @@ export default {
 
 :root {
   --main-height: calc(100vh - 32px - 64px);
+}
+
+main {
+  background-color: rgb(48, 3, 39);
+}
+
+body {
+  max-height: 100vh;
 }
 </style>
