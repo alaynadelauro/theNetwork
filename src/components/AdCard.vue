@@ -1,6 +1,6 @@
 <template>
     <img class="image-fluid w-100 h-100" :src="adProp.tall" :alt="adProp.title">
-    <a class="mb-0">{{ adProp.link }}</a>
+    <!-- <a class="mb-0">{{ adProp.link }}</a> -->
 </template>
 
 

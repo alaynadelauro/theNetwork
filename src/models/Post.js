@@ -3,6 +3,7 @@ export class Post {
         this.body = data.body
         this.createdAt = new Date(data.createdAt) || new Date
         this.creator = data.creator
+        // this.creator.image = data.creator.
         this.creatorId = data.creatorId
         this.id = data.id
         this.image = data.imgUrl || null

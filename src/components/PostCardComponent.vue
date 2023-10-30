@@ -3,8 +3,10 @@
         <img class="image-fluid postImage" :src="postProp.image" :alt="postProp.creator.name">
     </div>
     <div class="w-50 h-100">
-        <img class="rounded-circle creatorImage" :src="postProp.creator.picture" :alt="postProp.creator.name">
-        <p class="fs-3 fw-bold">{{ postProp.creator.name }}</p>
+        <img class="rounded-circle creatorImage mt-3" :src="postProp.creator.picture" :alt="postProp.creator.name">
+        <router-link :to="{ name: 'Profile' }">
+            <p class="fs-3 fw-bold">{{ postProp.creator.name }}</p>
+        </router-link>
         <p class="text-start ps-3 fs-5">{{ postProp.body }}</p>
     </div>
 </template>
@@ -36,6 +38,7 @@ export default {
 .creatorImage {
     height: 10vh;
     width: 10vh;
+    box-shadow: 5px 5px 15px black;
 }
 
 .postCard {

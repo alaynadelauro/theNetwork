@@ -2,7 +2,8 @@
   <div class="container-fluid whiteBg">
     <div class="row justify-content-start">
       <div class="col-2 advertisement myNav pt-4">
-        <div v-if="user" class="d-flex flex-column align-items-center">
+        <UserProfCardComponent :userProp="user" />
+        <!-- <div v-if="user.id" class="d-flex flex-column align-items-center">
           <img class="image-fluid rounded-circle profileImg" :src="user.picture">
           <h1 class="shadow navText pt-4">{{ user.name }}</h1>
           <p v-if="user.email"><i class="mdi mdi-mail pe-3"></i>{{ user.email }}</p>
@@ -14,13 +15,13 @@
             </button>
           </div>
         </div>
-        <div v-if="!user" class="text-center">
+        <div v-else-if="!user.id" class="text-center">
           <h1 class="navText">Welcome to The Network!</H1>
           <p class="mt-3">Please log in to proceed</p>
         </div>
         <div>
           <PostForm />
-        </div>
+        </div> -->
         <!-- SECTION modal goes here -->
       </div>
       <div class="col-8 text-center">
@@ -31,7 +32,7 @@
         </div>
       </div>
       <div class="col-2 navText justify-content-end align-items-center d-flex flex-column myNav ">
-        <p class="fs-3 text-center mb-0">A word from Our Sponsors</p>
+        <p class="fs-5 text-center mb-0">A word from Our Sponsors</p>
         <div v-for="ad in ads" :key="ad.title" class="advertisement mb-2 p-2">
           <AdCard :adProp="ad" />
         </div>
@@ -51,6 +52,7 @@ import PostCardComponent from '../components/PostCardComponent.vue';
 import PostForm from '../components/PostForm.vue'
 import { addService } from '../services/AddService.js'
 import AdCard from '../components/AdCard.vue';
+import UserProfCardComponent from '../components/UserProfCardComponent.vue';
 
 export default {
   setup() {
@@ -65,7 +67,6 @@ export default {
     }
     async function getAdds() {
       try {
-
         await addService.getAdds()
       } catch (error) {
         logger.error(error)
@@ -82,7 +83,7 @@ export default {
       user: computed(() => AppState.account),
     };
   },
-  components: { PostCardComponent, PostForm, AdCard }
+  components: { PostCardComponent, AdCard, UserProfCardComponent }
 }
 </script>
 
@@ -104,13 +105,13 @@ template {
 }
 
 .advertisement {
-  height: 40vh;
+  height: 39vh;
 }
 
 .myNav {
   background-color: rgb(48, 3, 39);
   color: whitesmoke;
-  height: 91vh;
+  height: 89.3vh;
 }
 
 .whiteBg {
@@ -120,19 +121,5 @@ template {
 .navText {
   color: whitesmoke;
   font-family: 'Merienda', cursive;
-}
-
-.profileImg {
-  height: 20vh;
-  width: 19vh;
-  object-fit: cover;
-  object-position: center;
-  box-shadow: 5px 5px 15px black;
-}
-
-.shadow {
-  text-shadow: 5px 5px 15px black;
-  // box-shadow: 5px 5px 15px black;
-  ;
 }
 </style>
