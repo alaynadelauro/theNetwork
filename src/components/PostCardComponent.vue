@@ -11,6 +11,7 @@
         <p class="text-start ps-3 mt-3">This post was created at:<br>{{ postProp.createdAt }}</p>
         <div class="d-flex align-items-center justify-content-end">
             <div v-if="postProp.creatorId == accountProp.id">
+                <!-- SECTION this does not work. For whatever reason, it doesn't want to even look at this and refuses to load the entire page because of the v-if -->
                 <button class="btn btn-danger m-2"><i class="mdi mdi-delete" title="Delete Post"></i></button>
             </div>
             <p class="text-end fs-3 pb-0 mb-0"><i class="mdi mdi-heart"></i>{{ postProp.likes }}</p>
