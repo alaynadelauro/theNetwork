@@ -4,7 +4,7 @@
     </div>
     <div class="w-50 h-100">
         <img class="rounded-circle creatorImage mt-3" :src="postProp.creator.picture" :alt="postProp.creator.name">
-        <router-link :to="{ name: 'Profile' }">
+        <router-link :to="{ name: 'Profile', params: { postId: postProp.id } }">
             <p class="fs-3 fw-bold">{{ postProp.creator.name }}</p>
         </router-link>
         <p class="text-start ps-3 fs-5">{{ postProp.body }}</p>

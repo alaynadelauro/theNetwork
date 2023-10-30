@@ -12,5 +12,8 @@ export const AppState = reactive({
   /**@type {import('./models/Ad.js').Ad[]} */
   ads: [],
 
+  /**@type {import('.models/Creator.js').Creator} */
+  creator: {},
+
   accountEdit: false
 })

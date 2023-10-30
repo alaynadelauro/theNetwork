@@ -3,26 +3,6 @@
     <div class="row justify-content-start">
       <div class="col-2 advertisement myNav pt-4">
         <UserProfCardComponent :userProp="user" />
-        <!-- <div v-if="user.id" class="d-flex flex-column align-items-center">
-          <img class="image-fluid rounded-circle profileImg" :src="user.picture">
-          <h1 class="shadow navText pt-4">{{ user.name }}</h1>
-          <p v-if="user.email"><i class="mdi mdi-mail pe-3"></i>{{ user.email }}</p>
-          <p v-if="user.github"><i class="mdi mdi-github pe-3"></i>{{ user.github }}</p>
-          <p v-if="user.linkedin"><i class="mdi mdi-linkedin pe-3"></i>{{ user.linkedin }}</p>
-          <div>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-              <i class="mdi mdi-pencil"></i>
-            </button>
-          </div>
-        </div>
-        <div v-else-if="!user.id" class="text-center">
-          <h1 class="navText">Welcome to The Network!</H1>
-          <p class="mt-3">Please log in to proceed</p>
-        </div>
-        <div>
-          <PostForm />
-        </div> -->
-        <!-- SECTION modal goes here -->
       </div>
       <div class="col-8 text-center">
         <div class="row justify-content-center posts mt-4">
