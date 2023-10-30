@@ -15,5 +15,6 @@ export const AppState = reactive({
   /**@type {import('.models/Creator.js').Creator} */
   creator: {},
 
-  accountEdit: false
+  accountEdit: false,
+  userConfirmed: false
 })

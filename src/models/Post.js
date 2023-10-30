@@ -8,7 +8,7 @@ export class Post {
         this.id = data.id
         this.image = data.imgUrl || null
         this.likeId = data.likeId
-        this.likes = data.likes
+        this.likes = data.likes.length
         this.updatedAt = new Date(data.updatedAt) || new Date
     }
 }

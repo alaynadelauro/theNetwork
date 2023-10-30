@@ -18,9 +18,12 @@
               <i class="mdi fs-3 mdi-pen"></i>
             </button>
           </div>
+          <div>
+            <button @click="getPostsByCreatorId()" class="btn btn-primary text-dark">View Your Posts!</button>
+          </div>
         </div>
         <div class="row">
-          <div class="col-5 mx-5 nameCard">
+          <div class="col-5 mx-4 nameCard">
             <p class="fs-4 text-start">My Contact Information:</p>
             <div class="text-start">
               <p><i class="mdi mdi-mail pe-3"></i>Email: {{ account.email }}</p>
@@ -28,13 +31,14 @@
               <p v-if="account.linkedin"><i class="mdi mdi-linkedin pe-3"></i>Linkedin: {{ account.linkedin }}</p>
             </div>
           </div>
-          <div class="col-5 mx-5 text-start nameCard">
+          <div class="col-5 mx-4 text-start nameCard">
             <p class="fs-4">About Me:</p>
             <p>{{ account.bio }}</p>
             <p>Graduation Status:
               <i v-if="account.graduated" class="mdi mdi-school"></i>
               <i v-if="!account.graduated" class="mdi mdi-book"></i>
             </p>
+            <p v-if="account.class">{{ account.class }}</p>
           </div>
         </div>
       </div>
@@ -43,21 +47,49 @@
       <AccountEditForm />
 
     </div>
-
+    <div class="row">
+      <div class="col-6 d-flex flex-row mt-3 justify-content-around">
+        <div v-for="ad in ads" :key="ad.title" class="d-flex flex-row">
+          <img :src="ad.square" class="d-flex flex-row ads">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row justify-content-center">
+        <div v-for="post in posts" :key="post.id" class="col-9 d-flex postCard m-2 px-0">
+          <PostCardComponent :postProp="post" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 import { AppState } from '../AppState';
 import { logger } from '../utils/Logger';
 import AccountEditForm from '../components/AccountEditForm.vue';
+import { postService } from '../services/PostService';
+import Pop from '../utils/Pop';
+import PostCardComponent from '../components/PostCardComponent.vue';
+import { addService } from '../services/AddService';
 export default {
   setup() {
+    async function getAdds() {
+      try {
+        await addService.getAdds()
+      } catch (error) {
+        logger.error(error)
+      }
+    }
+    onMounted(() => {
+      getAdds()
+    })
     return {
       account: computed(() => AppState.account),
       coverImgBg: computed(() => `url(${AppState.account.coverImg})`),
       formOpen: computed(() => AppState.accountEdit),
+      ads: computed(() => AppState.ads),
       callForm() {
         if (AppState.accountEdit == false) {
           AppState.accountEdit = true;
@@ -67,10 +99,23 @@ export default {
           AppState.accountEdit = false;
           logger.log(AppState.accountEdit, 'form');
         }
+      },
+      async getPostsByCreatorId() {
+        try {
+          // debugger
+          AppState.posts = []
+          logger.log('creator ID', AppState.creator.id)
+          const creatorId = AppState.creator.id
+          await postService.getPostsByCreatorId(creatorId)
+          // logger.log('came back from the service!')
+        } catch (error) {
+          Pop.error(error)
+          logger.error(error)
+        }
       }
     };
   },
-  components: { AccountEditForm }
+  components: { AccountEditForm, PostCardComponent }
 }
 </script>
 
@@ -94,10 +139,14 @@ export default {
 }
 
 .theView {
-  min-height: 92vh;
+  min-height: 89.75vh;
 }
 
 .background {
   background-image:url(`${account.coverImg}`)
+}
+
+.ads {
+  height: 20vh;
 }
 </style>
